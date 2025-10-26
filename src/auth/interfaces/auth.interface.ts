@@ -23,6 +23,7 @@ export interface LoginResponse {
     name: string;
     phoneNumber: string;
     verified: boolean;
+    type: string;
   };
 }
 
@@ -41,4 +42,5 @@ export interface CognitoUser {
   name: string;
   phoneNumber: string;
   verified: boolean;
+  type: string;
 }

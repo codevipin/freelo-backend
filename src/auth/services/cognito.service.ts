@@ -61,6 +61,7 @@ export class CognitoService {
         UserAttributes: [
           { Name: 'name', Value: registerDto.name },
           { Name: 'email', Value: registerDto.email },
+          { Name: 'custom:type', Value: registerDto.type },
           // TODO: Remove this default phone number once Cognito User Pool is updated to make phone_number optional
           { Name: 'phone_number', Value: registerDto.phoneNumber || '+1000000000' },
         ],
@@ -188,6 +189,7 @@ export class CognitoService {
         name: '',
         phoneNumber: '',
         verified: false,
+        type: 'customer',
       };
 
       // Extract user attributes
@@ -204,6 +206,9 @@ export class CognitoService {
             break;
           case 'email_verified':
             user.verified = attr.Value === 'true';
+            break;
+          case 'custom:type':
+            user.type = attr.Value || 'customer';
             break;
         }
       });

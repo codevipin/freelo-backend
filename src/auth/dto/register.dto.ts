@@ -1,5 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength, IsPhoneNumber } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength, IsPhoneNumber, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+
+export enum UserType {
+  CUSTOMER = 'customer',
+  RESTAURANT = 'restaurant',
+}
 
 export class RegisterDto {
   @ApiProperty({
@@ -34,4 +39,12 @@ export class RegisterDto {
   })
   @IsString()
   phoneNumber?: string;
+
+  @ApiProperty({
+    description: 'User type (customer or restaurant)',
+    example: 'customer',
+    enum: UserType,
+  })
+  @IsEnum(UserType)
+  type: UserType;
 }
