@@ -61,7 +61,8 @@ export class CognitoService {
         UserAttributes: [
           { Name: 'name', Value: registerDto.name },
           { Name: 'email', Value: registerDto.email },
-          { Name: 'phone_number', Value: registerDto.phoneNumber },
+          // TODO: Remove this default phone number once Cognito User Pool is updated to make phone_number optional
+          { Name: 'phone_number', Value: registerDto.phoneNumber || '+1000000000' },
         ],
         ClientMetadata: {
           username: registerDto.email,

@@ -28,10 +28,10 @@ export class RegisterDto {
   password: string;
 
   @ApiProperty({
-    description: 'User phone number',
+    description: 'User phone number (optional)',
     example: '+1234567890',
+    required: false,
   })
-  @IsNotEmpty()
   @IsString()
-  phoneNumber: string;
+  phoneNumber?: string;
 }
